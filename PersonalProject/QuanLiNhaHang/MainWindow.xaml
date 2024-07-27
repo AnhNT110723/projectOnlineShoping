@@ -1,0 +1,331 @@
+﻿<Window x:Class="QuanLiNhaHang.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLiNhaHang"
+        xmlns:Converter="clr-namespace:QuanLiNhaHang.Converter"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        DataContext="{StaticResource MainVm}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="LightGreen"
+        WindowStartupLocation="CenterScreen"
+        Name="mainWindow"
+        Title="MainWindow" Height="610" Width="990">
+
+    <Window.Resources>
+        <!-- Khai báo nhiều Converter -->
+        <Converter:StatusToTextConverter x:Key="StatusToTextConverter" />
+        <Converter:TabletypeIdToTabletypeNameConverter x:Key="TabletypeIdToTabletypeNameConverter"/>
+    </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" CommandParameter="{Binding ElementName=mainWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!--menu-->
+            <materialDesign:Card Margin="5 0 5 0"></materialDesign:Card>
+            <Grid Grid.Row="0">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+                    <Grid.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="2 4 2 4"></Setter>
+
+                        </Style>
+                    </Grid.Resources>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+                    <!--Thanh tim kiem-->
+
+                    <materialDesign:ColorZone Grid.Column="0" Background="LightPink"
+                        Margin="16,4,15,4"
+                        Padding="8,4,8,4"
+   
+                        materialDesign:ElevationAssist.Elevation="Dp2"
+                        CornerRadius="2"
+                        Mode="Standard">
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                        Width="Auto" />
+                                <ColumnDefinition
+                        Width="*" />
+                                <ColumnDefinition
+                        Width="Auto" />
+                                <ColumnDefinition
+                        Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button  Command="{Binding FilterCommand}" Grid.Column="0" Style="{StaticResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+                    Kind="Search"
+                    Opacity=".56" />
+                            </Button>
+                            <TextBox Text="{Binding SearchText}"
+                    Grid.Column="1"
+                    MinWidth="200"
+                    Margin="8,0,0,0"
+                    VerticalAlignment="Center"
+                    materialDesign:HintAssist.Hint="Build a search bar"
+                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                    BorderThickness="0" />
+                            <Button 
+                        Grid.Column="2"
+                        Style="{StaticResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+                        Margin="8,0,0,0"
+                         Kind="Microphone"
+                         Opacity=".56" />
+                            </Button>
+
+                            <Button Grid.Column="4" Command="{Binding FilterCommand}"
+                    Margin="8,0,0,0"
+                    Panel.ZIndex="0"
+                    Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                <materialDesign:PackIcon
+                    Kind="Send" />
+                            </Button>
+                        </Grid>
+
+                    </materialDesign:ColorZone>
+
+                    <Button Command="{Binding RevenueCommand}" Grid.Column="1"  ToolTip="RevenueReport" Background="LightPink">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock HorizontalAlignment="Center">Revenue Report</TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="ChartAreaspline"/>
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding TableCommand}" Grid.Column="2"  ToolTip="Create Table" Background="LightPink">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock HorizontalAlignment="Center">Create Table</TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="TableChair"/>
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding FoodCommand}" Grid.Column="3"  ToolTip="Food" Background="LightPink">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock HorizontalAlignment="Center">Food</TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Food"/>
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding AccountCommand}" CommandParameter="{Binding ElementName=mainWindow}" Grid.Column="4" ToolTip="Staff" Background="LightPink">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock HorizontalAlignment="Center">Staff</TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="AccountGroup"/>
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+
+                    <Button Command="{Binding ViewOrderCommand}" CommandParameter="{Binding ElementName=mainWindow}" Grid.Column="5" ToolTip="ViewOrder" Background="LightPink">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock HorizontalAlignment="Center">View Order</TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="EyeArrowRightOutline"/>
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    
+                    <Button Command="{Binding ManageActivityCommand}" Grid.Column="6" ToolTip="ViewOrder" Background="LightPink">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock HorizontalAlignment="Center">Manage Activity</TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Group"/>
+                            </Grid>
+                        </Grid>
+                    </Button>
+                    <Button Command="{Binding MyAccountCommand}" Grid.Column="7" ToolTip="Founder" Background="LightPink">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <TextBlock HorizontalAlignment="Center">My Account</TextBlock>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="HumanHandsup"/>
+                            </Grid>
+                        </Grid>
+                    </Button>
+
+                    <Button Grid.Column="8" Command="{Binding LogoutCommand}" CommandParameter="{Binding ElementName=mainWindow}"
+                        Margin="10"
+                        materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                        materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                        materialDesign:ButtonProgressAssist.Value="-1"
+                        Content="Logout"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Style="{StaticResource MaterialDesignFlatButton}"/>
+
+
+
+
+                </Grid>
+            </Grid>
+
+            <!--main-->
+            <Grid Grid.Row="1">
+
+
+
+                <!--List table-->
+
+                <materialDesign:Card Margin="5,5,5,5" Grid.ColumnSpan="2">
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="https://spicyfoodstudio.com/wp-content/uploads/2023/03/chup-hinh-menu-nha-hang-03.jpeg" />
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="139*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Separator Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="2" />
+
+                        <!-- Remove the outer ScrollViewer and let the ListBox handle scrolling -->
+                        <ListBox Grid.Row="1" ItemsSource="{Binding Tables}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Grid.ColumnSpan="2">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"   />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Card Width="173" Padding="0" Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Grid.Row="0" Margin="16,16,16,4" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Text="{Binding TableName}" />
+                                            <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}" />
+                                            <TextBlock Grid.Row="2" Margin="16,0,16,8" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                            Text="{Binding Status, Converter={StaticResource StatusToTextConverter}}" />
+
+                                            <TextBlock Grid.Row="2" Margin="16,0,16,8" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}"
+                                            Text="{Binding TableTypeId, Converter={StaticResource TabletypeIdToTabletypeNameConverter}}" />
+
+                                            <materialDesign:PopupBox Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                                <DockPanel LastChildFill="True">
+                                                    <StackPanel>
+                                                        <Button Content="Open Table" HorizontalAlignment="Center" Command="{Binding DataContext.OpenTableCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding }" />
+                                                        <Button Content="Choose Menu" HorizontalAlignment="Center"   Command="{Binding DataContext.MenuCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                        CommandParameter="{Binding}" />
+                                                        <Button Content="Book Table" HorizontalAlignment="Center" Command="{Binding DataContext.BookingTableCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding }" />
+                                                        <Button Content="Close Table" HorizontalAlignment="Center" Command="{Binding DataContext.CloseTableCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding }" />
+                                                    </StackPanel>
+                                                </DockPanel>
+                                            </materialDesign:PopupBox>
+                                        </Grid>
+                                        <materialDesign:Card.Style>
+                                            <Style TargetType="materialDesign:Card">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Status}" Value="1">
+                                                        <Setter Property="Background" Value="LightGreen"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Status}" Value="0">
+                                                        <Setter Property="Background" Value="LightCoral"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Status}" Value="2">
+                                                        <Setter Property="Background" Value="LightBlue"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </materialDesign:Card.Style>
+                                    </materialDesign:Card>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </materialDesign:Card>
+
+
+
+
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

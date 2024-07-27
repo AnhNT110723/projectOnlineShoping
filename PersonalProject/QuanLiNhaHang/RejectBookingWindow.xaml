@@ -1,0 +1,57 @@
+﻿<Window x:Class="QuanLiNhaHang.RejectBookingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLiNhaHang"
+        mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        Background="LightGreen"
+        Name="RejectWD"
+        Title="RejectBookingWindow" Height="450" Width="800">
+    <Grid>
+        <materialDesign:Card Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontSize="30" Margin="0 20 0 0" FontWeight="Bold">Reject</TextBlock>
+
+                <TextBox  Grid.Row="1" Text="{Binding Content,  Mode=TwoWay}"
+         Name="textBox"
+         AcceptsReturn="True"
+         TextWrapping="Wrap"
+         Width="600"
+         Height="200"
+         Margin="10"
+         VerticalAlignment="Stretch"
+         HorizontalAlignment="Stretch"  BorderBrush="Black"
+         BorderThickness="1"/>
+
+                <Grid Margin="0 10 0 10" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding RejectCommand}" CommandParameter="{Binding ElementName=RejectWD}" Background="Red" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Approve"  Margin="5" Grid.Column="0" />
+                    <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=RejectWD}"  HorizontalAlignment="Center" VerticalAlignment="Center" Content="Cancel" Margin="5" Grid.Column="1" />
+
+
+
+                </Grid>
+            </Grid>
+
+        </materialDesign:Card>
+    </Grid>
+</Window>

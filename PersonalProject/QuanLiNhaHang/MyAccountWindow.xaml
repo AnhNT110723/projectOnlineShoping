@@ -1,0 +1,105 @@
+﻿<Window x:Class="QuanLiNhaHang.MyAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLiNhaHang"
+        mc:Ignorable="d"
+        
+        xmlns:Converter="clr-namespace:QuanLiNhaHang.Converter"
+           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+         TextElement.FontWeight="Regular"
+         TextElement.FontSize="13"
+         TextOptions.TextFormattingMode="Ideal"
+         TextOptions.TextRenderingMode="Auto"
+         DataContext="{StaticResource MyAccVM}"
+         FontFamily="{DynamicResource MaterialDesignFont}"
+          WindowStartupLocation="CenterScreen"
+        Title="MyAccountWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <Converter:GenderToBooleanConverter x:Key="GenderToBooleanConverter" />
+    </Window.Resources>
+    
+    <Grid>
+
+                <materialDesign:Card>
+                    <TabControl>
+                        <!-- TabItem 1 -->
+                        <TabItem Header="Profile">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="auto" ></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,0,0">My Account</TextBlock>
+                                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 10 0 0">
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                                        <Label Width="70" Content="Full Name:"/>
+                                        <TextBox Name="txtId" Width="250px" Text="{Binding FullName, Mode=TwoWay}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                                        <Label Width="70" Content="Email"/>
+                                        <TextBox Name="txtName" Width="250px" Text="{Binding Email, Mode=TwoWay}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                                        <Label Width="70" Content="Gender"/>
+                                        <RadioButton Content="Male" IsChecked="{Binding Gender, Converter={StaticResource GenderToBooleanConverter},  ConverterParameter=1, Mode=TwoWay}" ></RadioButton>
+                                        <RadioButton Margin="5 0 0 0" IsChecked="{Binding Gender, Converter={StaticResource GenderToBooleanConverter}, ConverterParameter=0, Mode=TwoWay}"    Content="Female"></RadioButton>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                                        <Label Width="70" Content="DOB"/>
+                                    <DatePicker Name="dpkDob" Width="100px" SelectedDate="{Binding DateOfBirth, Mode=TwoWay}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                                        <Label Width="70" Content="Role"/>
+                                        <TextBox Name="txtGpa" Width="250px" Text="{Binding RoleName, Mode=TwoWay}" IsReadOnly="True"/>
+                                    </StackPanel>
+                                    
+                                    <Button Command="{Binding SaveProfieCommand}" Margin="10 20 10 10" Width="100" Content="Save" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignPaperSecondaryButton}"
+                                ToolTip="Resource name: MaterialDesignPaperSecondaryButton"/>
+                                </StackPanel>
+
+
+                                <!-- Các phần tử UI khác -->
+                            </Grid>
+                        </TabItem>
+
+                        <!-- TabItem 2 -->
+                        <TabItem Header="New Password">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,0,0">Change Password</TextBlock>
+                                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 10 0 0">
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                                        <Label Width="100" Content="New Password"/>
+                                <TextBox Name="txtnewpass" Width="250px" Text="{Binding newPassword, Mode=TwoWay}"/>
+                                    </StackPanel>
+
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                                        <Label Width="100" Content="Re Password"/>
+                                <TextBox Name="txtRepass" Width="250px" Text="{Binding RePassword, Mode=TwoWay}"/>
+                                    </StackPanel>
+                            <Button Command="{Binding NewPasswordCommand}" Margin="10 20 10 10" Background="Lavender" Width="100" Content="Save" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignPaperSecondaryButton}"
+                                ToolTip="Resource name: MaterialDesignPaperSecondaryButton"/>
+                        </StackPanel>
+
+                            </Grid>
+                        </TabItem>
+
+                    </TabControl>
+                </materialDesign:Card>
+
+
+    </Grid>
+</Window>

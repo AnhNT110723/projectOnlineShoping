@@ -1,0 +1,180 @@
+﻿<Window x:Class="QuanLiNhaHang.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLiNhaHang"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        Name="MenuFood"
+        Title="MenuWindow" Height="450" Width="800">
+    <Grid>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <!-- Header Row -->
+                    <RowDefinition Height="2*"/>
+                    <!-- List of Foods Row -->
+                    <RowDefinition Height="*"/>
+                    <!-- Buttons Row -->
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <TextBlock Grid.Row="0" Text="Menu Food" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+
+                <!-- List of Foods -->
+                <Grid  Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="10 0 0 10" Orientation="Horizontal">
+                        <Label>Search Food:</Label>
+                        <TextBox  Width="200" HorizontalAlignment="Left"
+                                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}">
+                            
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding FilterCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                    </StackPanel>
+                    
+                    <materialDesign:Card Grid.Row="1" HorizontalAlignment="Stretch" Margin="5">
+                        <DataGrid Name="dgvDisplay" AutoGenerateColumns="False" CanUserAddRows="False"
+                        ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="ID" Binding="{Binding Path=FoodId}" IsReadOnly="True"/>
+                                <DataGridTextColumn Width="*" Header="FoodName" Binding="{Binding Path=FoodName}" IsReadOnly="True"/>
+                                <DataGridTextColumn Width="*" Header="Price" Binding="{Binding Path=Price , StringFormat=\{0:N0\} VND}" IsReadOnly="True"/>
+                                <DataGridTextColumn Width="*" Header="FoodType" Binding="{Binding Path=FoodTypeName}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </materialDesign:Card>
+                </Grid>
+                
+                <StackPanel Grid.Column="1" Orientation="Vertical" >
+
+                    <Grid Margin="0 10 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Table" Width="100" VerticalAlignment="Center"  />
+                        <TextBox Grid.Column="2"  Name="txtTable"   Text="{Binding TableId,  Mode=TwoWay}"/>
+                    </Grid>
+
+
+                    <Grid Margin="0 10 0 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"  Content="Food Name:" Width="100"   VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                        <TextBox Grid.Column="1"  Name="txtName"  IsReadOnly="True" Text="{Binding FoodName,  Mode=TwoWay}" />
+                        </Grid>
+                        <Grid Margin="0 10 0 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="Price" Width="100" VerticalAlignment="Center"  />
+                        <TextBox Grid.Column="2"  Name="txtPrice"   IsReadOnly="True"  Text="{Binding Price,  Mode=TwoWay}"/>
+                        </Grid>
+
+
+
+                    <Grid Margin="0 10 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Quanity" Width="100" VerticalAlignment="Center"  />
+                        <!--<TextBox Grid.Column="1"  Name="txtQuanity"   Text="{Binding Quantity,  Mode=TwoWay}"/>-->
+
+                        <materialDesign:NumericUpDown Grid.Column="1" Value="{Binding Quantity, Mode=TwoWay}">
+                            <materialDesign:NumericUpDown.IncreaseContent>
+                             <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}" BorderThickness="1"
+                                CornerRadius="20">
+                            <materialDesign:PackIcon  Kind="ArrowUp" />
+                              </Border>
+                            </materialDesign:NumericUpDown.IncreaseContent>
+                            <materialDesign:NumericUpDown.DecreaseContent>
+                                <Border BorderBrush="{DynamicResource MaterialDesign.Brush.Foreground}" BorderThickness="1"
+                                 CornerRadius="20" >
+                                    <materialDesign:PackIcon  Kind="ArrowDown" />
+                                </Border>
+                            </materialDesign:NumericUpDown.DecreaseContent>
+                        </materialDesign:NumericUpDown>
+                    </Grid>
+
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Command="{Binding AddFoodWithCommand}"  Background="Green" Name="btnInsert" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Insert" Width="80" Margin="5" Grid.Column="0" />
+                        <Button Command="{Binding UpdateFoodWithCommand}"  Background="Blue" Name="btnUpdate" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Update" Width="80" Margin="5" Grid.Column="1" />
+                        <Button Command="{Binding DeleteFoodWithCommand}"  Background="OrangeRed" Name="btnDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Delete" Width="80" Margin="5" Grid.Column="2" />
+
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+
+                <!-- order information -->
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:Card Grid.Column="0" Margin="5,5,5,5">
+                        <DataGrid Name="displayOrder" AutoGenerateColumns="False" CanUserAddRows="False"
+     ItemsSource="{Binding ListTableFood}" SelectedItem="{Binding SelectedItemWithFood, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="ID" Binding="{Binding Path=TableFoodId}" IsReadOnly="True"/>
+                            <DataGridTextColumn Width="*" Header="TableName" Binding="{Binding Path=TableName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Width="*" Header="FoodName" Binding="{Binding Path=FoodName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Width="*" Header="Price" Binding="{Binding Path=Price, StringFormat=\{0:N0\} VND}" IsReadOnly="True"/>
+                            <DataGridTextColumn Width="*" Header="Quantity" Binding="{Binding Path=Quantity}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </materialDesign:Card>
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Grid.ColumnSpan="2" >
+                    <Grid Margin="0 10 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="Add to Order" Background="Green" Command="{Binding AddToOrderCommand}" CommandParameter="{Binding ElementName=MenuFood}" Margin="5"/>
+                        <Button Grid.Column="1" Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=MenuFood}" Margin="5"/>
+                        </Grid>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+
+    </Grid>
+</Window>

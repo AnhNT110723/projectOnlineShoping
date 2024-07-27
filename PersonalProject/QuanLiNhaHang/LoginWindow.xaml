@@ -1,0 +1,115 @@
+﻿<Window x:Class="QuanLiNhaHang.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuanLiNhaHang"
+        mc:Ignorable="d"
+        
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#ccc"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{StaticResource LoginVM}"
+      
+        Name="loginWindow"
+        Title="LoginWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="https://candangstudio.com/wp-content/uploads/2020/08/50191330151_4497957154_o.jpg" />
+        </Grid.Background>
+        <materialDesign:Card  Width="700" Height="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+
+            <Grid>
+
+                <Grid.Resources>
+                    <Style TargetType="StackPanel" >
+                        <Setter Property="Margin" Value="15 15 15 0"></Setter>
+                    </Style>
+                    <Style TargetType="Grid" >
+                        <Setter Property="Margin" Value="0 25 0 0"></Setter>
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Image Source="https://thietkeaz.com/files/02-04-18/thiet-ke-logo-nha-hang-05.png" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0"  Width="300" Height="300" />
+                </Grid>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock
+                        Style="{StaticResource MaterialDesignHeadline3TextBlock}"
+                        Text="Login" HorizontalAlignment="Center"  
+                    FontFamily="Segoe UI" FontWeight="DemiBold" />
+
+                    <StackPanel >
+
+                        <TextBox VerticalAlignment="Center" Name="txtEmail"
+                             Text="{Binding Email }"
+                    materialDesign:HintAssist.Hint="Email"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </StackPanel>
+                    <StackPanel >
+                        <PasswordBox
+                    x:Name="psbPass"
+                        Password=""
+                     materialDesign:HintAssist.Foreground="Green"
+                    materialDesign:HintAssist.Hint="Password"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Green"
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}">
+
+                            <!--Bat even password-->
+
+                    <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" CommandParameter="{Binding ElementName=psbPass}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                        <TextBlock Margin="0 10 0 0" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <Hyperlink Command="{Binding ForgotPassWordCommand}" CommandParameter="{Binding ElementName=loginWindow}" Foreground="Purple">               
+                                        <TextBlock Text="Forgot Password?" VerticalAlignment="Center" />         
+                                </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+
+
+                        <Button Margin="0 15 0 0" Grid.Column="0" Width="110" Command="{Binding LoginCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
+                Content="Login"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                Style="{StaticResource MaterialDesignRaisedSecondaryButton}"
+                ToolTip="Resource name: MaterialDesignRaisedButton" ></Button>
+
+
+              
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}" Text="Don't have an account?" VerticalAlignment="Center" />
+
+                        <Button Command="{Binding SignupCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}" Margin="2,0" materialDesign:ButtonProgressAssist.IsIndeterminate="True" materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                            materialDesign:ButtonProgressAssist.Value="-1" Content="Sign up"  
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignFlatButton}" />
+                    </StackPanel>
+
+
+                </StackPanel>
+
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>

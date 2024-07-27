@@ -1,0 +1,20 @@
+﻿QuanLiNhaHang
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\FPTU\Semester 5\Prn212\CODE\PersonalProject\QuanLiNhaHang\obj\Debug\net8.0-windows\
+QuanLiNhaHang
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+D:\FPTU\Semester 5\Prn212\CODE\PersonalProject\QuanLiNhaHang\App.xaml
+27-1322791406
+
+83104419268
+252-827511179
+ApproveBookingTableWindow.xaml;BookingHistoryWindow.xaml;BookingWindow.xaml;CapchaWindow.xaml;CRUDFoodWindow.xaml;EmployeeWindow.xaml;ForgotPasswordWIndow.xaml;LoginWindow.xaml;MainCustomerWindow.xaml;MainStaffWindow.xaml;MainWindow.xaml;ManageActivityWindow.xaml;ManageBookingWindow.xaml;ManageTableWindow.xaml;MenuWindow.xaml;MyAccountWindow.xaml;NewPasswordWindow.xaml;PayBillWindow.xaml;QRWindow.xaml;QuestionCancelBookingTableWindow.xaml;QuestionResetPasswordWindow.xaml;RejectBookingWindow.xaml;ResourceXAML\MainResource.xaml;RevenueReportWindow.xaml;SignUpWindow.xaml;ViewOrderDetailWindow.xaml;ViewOrderWindow.xaml;
+
+False
+
