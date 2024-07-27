@@ -59,8 +59,7 @@
               "ViewState": "AQIAAEUAAAAAAAAAAAAiwFQAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-21T22:57:33.023Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -136,8 +135,7 @@
               "RelativeToolTip": "QuanLiNhaHang\\ViewModel\\Customer\\QuestionCanelBookingTableViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAF0AAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T22:57:08.041Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-21T22:57:08.041Z"
             },
             {
               "$type": "Document",
@@ -149,8 +147,7 @@
               "RelativeToolTip": "QuanLiNhaHang\\ViewModel\\MainWindowViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAFoBAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T22:11:27.949Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-21T22:11:27.949Z"
             },
             {
               "$type": "Document",
@@ -182,10 +179,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-22T08:17:17.062Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
             }
           ]
         }

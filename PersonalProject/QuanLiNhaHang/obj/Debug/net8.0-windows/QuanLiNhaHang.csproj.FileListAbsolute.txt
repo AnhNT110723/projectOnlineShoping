@@ -200,3 +200,4 @@ D:\FPTU\Semester 5\Prn212\CODE\PersonalProject\QuanLiNhaHang\obj\Debug\net8.0-wi
 D:\FPTU\Semester 5\Prn212\CODE\PersonalProject\QuanLiNhaHang\obj\Debug\net8.0-windows\QuestionCancelBookingTableWindow.baml
 D:\FPTU\Semester 5\Prn212\CODE\PersonalProject\QuanLiNhaHang\obj\Debug\net8.0-windows\CapchaWindow.g.cs
 D:\FPTU\Semester 5\Prn212\CODE\PersonalProject\QuanLiNhaHang\obj\Debug\net8.0-windows\CapchaWindow.baml
+D:\FPTU\Semester 5\Prn212\CODE\PersonalProject\QuanLiNhaHang\obj\Debug\net8.0-windows\QuanLiNhaHang.sourcelink.json
